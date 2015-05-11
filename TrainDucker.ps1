@@ -1,4 +1,4 @@
-# Train Game Runner!
+# Train Ducker
 # Written by Matthew A. Cordaro
 
 # You may need to change the location of chrome for your computer.
@@ -20,9 +20,9 @@ if ($startingNum){
 }
 if ($startingNum -eq 1000){
   Write-Host "Welcome to the Train Ducker Script!"
-  Write-Host "The goal of the Google Train Game is avoid finding a picture of a train while scrolling"
-  Write-Host "to the very bottom of a Google image search of a four digit number."
-  Write-Host "The Train Ducker Script will speed up the process by loading ten pages at a time."
+  Write-Host "The goal of the Google Images Train Game is avoid finding a picture of a train while" 
+  Write-Host "scrolling to the very bottom of a Google image search of a four digit number."
+  Write-Host "The Train Ducker speeds up the process by loading ten sequential pages at a time."
   Write-Host 'Press "Enter" to start...'
   Write-Host "And good luck ducking those trains!"
   while ([Console]::ReadKey($true).Key.ToString().CompareTo("Enter") -ne0) {}
