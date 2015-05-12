@@ -27,7 +27,7 @@ _Can you duck all the trains_?
 1. Follow the instructions there.
 
 ## OSX
-I have no plans to port.  If someone wishes to port it, that would be awesome. Once the Linux version is done it shouldn't be very different.
+I have no plans to port.  If someone wishes to port it, that would be awesome. Since the Linux version is done it shouldn't be very different.
 
 ### Non-Chromium based browsers
 Once again, I have no plans to port & if someone wishes to do it, that would be awesome.
