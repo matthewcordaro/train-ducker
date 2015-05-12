@@ -1,66 +1,72 @@
+# PowerShell
+
 # Train Ducker
 # Written by Matthew A. Cordaro
 
 # You may need to change the location of chrome for your computer.
+# It is best to use the root path 'X:\a\b\chrome.exe'.
 $chromeLoc = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
 
-# Verify arguments, if any
-$startingNum = $args[0]
-if ($startingNum){
-  if ($startingNum.getType().name.CompareTo("Int32")){
-    Write-Host "Not a number." 
-    Exit
+# Defaults
+$urlPrefix = 'https://www.google.com/search?tbm=isch&safe=strict&q='
+$startingNum = 1000
+$legalNum = '^[1-9]{1}[0-9]{3}$'
+
+# Introduction
+if ($args[0]){
+  # Returning player
+  # Verify arguments
+  $startingNum = $args[0]
+  if ($startingNum -notmatch $legalNum){
+    echo "Error: $startingNum is not a number between 1000 & 9999." 
+    exit 1
   }
-  if ($startingNum -lt 1000 -or $startingNum -gt 9999){
-    Write-Host "Not between 1000 & 9999." 
-    Exit
-  }
+  echo "Welcome back!"
+  echo "So you want to start from $startingNum huh?"
+  echo 'No problem.  Press "Enter" to start...'
+  echo "And good luck ducking those trains!"
+  while ([Console]::ReadKey($true).Key.ToString().CompareTo("Enter") -ne0) {}
 } else {
-  $startingNum = 1000
-}
-if ($startingNum -eq 1000){
-  Write-Host "Welcome to the Train Ducker Script!"
-  Write-Host "The goal of the Google Images Train Game is avoid finding a picture of a train while" 
-  Write-Host "scrolling to the very bottom of a Google image search of a four digit number."
-  Write-Host "The Train Ducker speeds up the process by loading ten sequential pages at a time."
-  Write-Host 'Press "Enter" to start...'
-  Write-Host "And good luck ducking those trains!"
+  # New player
+  echo "Welcome to the Train Ducker Script!"
+  echo "The goal of the Google Images Train Game is avoid finding a picture of a train" 
+  echo "while scrolling to the very bottom of a Google image search of a four digit"
+  echo "number."
+  echo "Train Ducker speeds up the process by loading ten sequential pages at a time."
+  echo 'Press "Enter" to start...'
+  echo "And good luck ducking those trains!"
   while ([Console]::ReadKey($true).Key.ToString().CompareTo("Enter") -ne0) {}
 }
-else{
-  Write-Host "Welcome back!"
-  Write-Host "So you want to start from #$startingNum huh?"
-  Write-Host "No problem.  Good luck ducking those trains!"
-}
 
-$urlPrefix = 'https://www.google.com/search?tbm=isch&safe=strict&q='
+# Generate browser tabs
 for($i = $startingNum; $i -le 9999; $i += 10){
-	for($j = 0; ($number = $i + $j) -le 9999 -and $j -le 9; $j++) {
-    $url =  $urlPrefix + $number.ToString()
+  # Open URLs
+  for($currentNum = $i; $currentNum -le 9999 -and $currentNum -le $i+9; $currentNum++) {
+    $url =  $urlPrefix + $currentNum.ToString()
     start-process $chromeLoc -ArgumentList "--incognito $url"
   }
   # Check if no more numbers
-  if ($i -gt 9990){
-    Write-Host "You reached the end!"
-    Write-Host "Were you able to duck any trains?!?"
-    Exit
+  if ($i -ge 9999){
+    echo "You reached the end!"
+    echo "Were you able to duck any trains?!?"
+    exit 0
   }
   # Prompt to continue
-  Write-Host 'Press "Enter" to continue or "S" to stop...'
-  do{
+  echo 'Press "Enter" to continue or "S" to stop...'
+  while($true){
     $continue = [Console]::ReadKey($true).Key.ToString()
     $nextnum =  ($i + 10).ToString()
     if ($continue.CompareTo("S") -eq 0) {
       $scriptname = $myInvocation.MyCommand.Name
-      Write-Host "Your next number is $nextnum."
-      Write-Host "Simply run: './$scriptname $nextnum' to continue where you left off."
-      Write-Host "Press any key to exit."
+      echo "Your next number is $nextnum."
+      echo "Simply run: './$scriptname $nextnum' to continue where you left off."
+      echo "Press any key to exit."
       [Console]::ReadKey($true).Key | out-null
-      Exit
+      exit 0
     }
     if ($continue.CompareTo("Enter") -eq 0) {
-      Write-Host "Running next set from $nextnum."
+      echo "Running next set from $nextnum."
       break
     }
-  } while($true)
+  } 
 }
