@@ -1,7 +1,7 @@
 # Train Ducker Scripts
-The Train Ducker Scripts speed up the process of playing the Google Images Train Game by loading ten pages at a time in sequential order. You can specify a point to continue (or start) from by appending the number as an argument.
+Train Ducker speeds up the process of playing the Google Images Train Game by loading ten pages at a time in sequential order. You can specify a point to continue (or start) from by appending the number as an argument.
 
-# The Google Images Train Game Rules
+## The Google Images Train Game Rules
 - Go to [Google Image Search](https://www.google.com/search?tbm=isch&safe=strict "Open in incognito mode!") and enter a 4 digit number.
 - If you come a cross ANY type of train (even models, artwork, etc.) you loose.
 - You must be in incognito mode & safe search must be on.
