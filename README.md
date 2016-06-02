@@ -10,7 +10,7 @@ _Can you duck all the trains_?
 
 # Getting Started
 ## Windows
-1. You'll need to read up on execution policys... [Google it](https://www.google.com/search?q=set-executionpolicy "set-executionpolicy"). I recommend _RemoteSigned_.
+1. You'll need to read up on execution policys... [Google it](http://lmgtfy.com/?q=set-executionpolicy "set-executionpolicy"). I recommend _RemoteSigned_.
 1. The location of `chrome.exe` is set to the default installation location of _C:\Program Files (x86)\Google\Chrome\Application\chrome.exe_. Edit the `$chromeLoc` variable if necessary. (It's close to the top of the file.)
 1. Go to the `train-ducker-scripts` directory and run the [Train Ducker PowerShell Script](https://github.com/matthewcordaro/train-ducker-scripts/blob/master/TrainDucker.ps1 "Train Ducker"):
 
